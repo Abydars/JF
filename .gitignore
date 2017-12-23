@@ -1,0 +1,14 @@
+/node_modules/
+/bower_components/
+/public/storage/
+/public/photos/
+/public/temp/
+/vendor/
+/.idea
+/cgi-bin
+/.ftpquota
+/error.log
+/error_log
+/.env
+.DS_Store
+*.zip
