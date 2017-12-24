@@ -10,13 +10,13 @@
  */
 
 
-(function(window, document, $, undefined) {
+(function (window, document, $, undefined) {
 
     if (typeof $ === 'undefined') {
         throw new Error('This application\'s JavaScript requires jQuery');
     }
 
-    $(function() {
+    $(function () {
 
         // Restore body classes
         // -----------------------------------
@@ -35,8 +35,29 @@
         $('.offsidebar.hide').removeClass('hide');
 
         // Disable warning "Synchronous XMLHttpRequest on the main thread is deprecated.."
-        $.ajaxPrefilter(function(options, originalOptions, jqXHR) {
+        $.ajaxPrefilter(function (options, originalOptions, jqXHR) {
             options.async = true;
+        });
+
+        $('.datetimepicker').each(function () {
+            var format = $(this).data('format');
+
+            if (format == undefined)
+                format = "YYYY-MM-DD";
+
+            $(this).datetimepicker({
+                icons: {
+                    time: 'fa fa-clock-o',
+                    date: 'fa fa-calendar',
+                    up: 'fa fa-chevron-up',
+                    down: 'fa fa-chevron-down',
+                    previous: 'fa fa-chevron-left',
+                    next: 'fa fa-chevron-right',
+                    today: 'fa fa-crosshairs',
+                    clear: 'fa fa-trash'
+                },
+                format: format
+            });
         });
 
     }); // doc ready
@@ -3376,7 +3397,7 @@ String.prototype.hashCode = function() {
     $(function() {
         $.ajaxPrefilter(function(options, originalOptions, xhr) { // this will run before each request
             NProgress.start();
-            var token = window.byuapp.csrfToken;
+            //var token = window.byuapp.csrfToken;
             if (window.byuapp && window.byuapp.csrfToken) {
                 return xhr.setRequestHeader('X-CSRF-TOKEN', window.byuapp.csrfToken); // adds directly to the XmlHttpRequest Object
             }
@@ -3408,6 +3429,39 @@ String.prototype.hashCode = function() {
     });
 
 })(window, document, window.jQuery);
+(function () {
+
+    $('.subscription-form').parsley().on('form:submit', function () {
+
+        var $form = this.$element;
+        var $success = $($form.data('success-element'));
+        var $error = $($form.data('error-element'));
+        var action = $form.attr('action');
+
+        $error.text("");
+        $success.text("");
+
+        $.ajax({
+            url: action,
+            type: 'POST',
+            data: $form.serializeArray(),
+            dataType: 'JSON',
+            success: function (e) {
+                if (e.status)
+                    $success.html(e.message);
+                else
+                    $error.html(e.message);
+            },
+            error: function (e) {
+                $error.text('Failed to subscribe');
+                console.log(e);
+            }
+        });
+
+        return false;
+    });
+
+})(jQuery);
 // // CHART SPLINE
 // // -----------------------------------
 // (function(window, document, $, undefined) {

@@ -14,16 +14,11 @@
 Auth::routes();
 
 Route::get( '/', 'PublicController@home' )->name( 'home' );
+Route::get( 'dashboard', 'PublicController@dashboard' )->name( 'dash' );
+Route::get( 'page/{page}', 'PublicController@page' )->name( 'public.page' );
 
-Route::get( 'dash', function () {
-	$user = Auth::user();
-
-	if ( $user && $user->is_admin ) {
-		return response()->redirectToRoute( 'admin.dashboard' );
-	}
-
-	return response()->redirectToRoute( 'dashboard' );
-} )->name( 'dash' );
+Route::post( 'subscribe', 'SubscriptionController@subscribe' )->name( 'public.subscribe' );
+Route::post( 'page/{page}', 'PublicController@page' )->name( 'public.page' );
 
 Route::group( [ 'prefix' => 'user', 'middleware' => [ 'auth', 'activated', 'subscriber' ] ], function () {
 	//Deactivated Controllers
@@ -34,25 +29,31 @@ Route::group( [ 'prefix' => 'user', 'middleware' => [ 'auth', 'activated', 'subs
 	// Pusher
 	Route::get( 'pusher/auth', 'PusherController@auth' )->name( 'pusher.auth' );
 
-	// Settings
-	Route::get( 'settings', 'SettingsController@index' )->name( 'settings.index' );
-	Route::post( 'settings', 'SettingsController@index' );
-
 	// Permission
 	Route::get( 'denied', 'PermissionsController@denied' )->name( 'permission.denied' );
 
 	// User Dashboard
-	Route::get( 'dashboard', 'DashboardController@index' )->name( 'dashboard' );
+	Route::get( 'dashboard', 'DashboardController@index' )->name( 'dashboard.user' );
 } );
 
 /*
  * Admin Routes
  */
 Route::group( [ 'prefix' => 'admin', 'middleware' => [ 'auth', 'administrator' ] ], function () {
-	Route::get( '/dashboard', 'AdminController@index' )->name( 'admin.dashboard' );
+	Route::get( '/dashboard', 'AdminController@index' )->name( 'dashboard.admin' );
 
+	// Users
 	Route::get( 'user/data', 'UserController@data' )->name( 'user.data' );
 	Route::resource( 'user', 'UserController' );
+
+	// Settings
+	Route::get( 'settings', 'SettingsController@index' )->name( 'settings.index' );
+	Route::post( 'settings', 'SettingsController@index' );
+
+	// Subscribers
+	Route::get( 'subscriber', 'SubscriptionController@index' )->name( 'subscriber.index' );
+	Route::get( 'subscriber/data', 'SubscriptionController@data' )->name( 'subscriber.data' );
+	Route::post( 'subscriber/spread', 'SubscriptionController@spread' )->name( 'subscriber.spread' );
 } );
 
 Route::group( [ 'prefix' => 'user', 'middleware' => [ 'auth', 'contributor' ] ], function () {

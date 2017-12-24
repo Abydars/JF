@@ -15,4 +15,44 @@ class PublicController extends Controller
 			'is_user_logged_in' => ! empty( $user )
 		] );
 	}
+
+	public function dashboard()
+	{
+		$user = Auth::user();
+
+		if ( $user && $user->is_admin ) {
+			return response()->redirectToRoute( 'dashboard.admin' );
+		}
+
+		return response()->redirectToRoute( 'dashboard.user' );
+	}
+
+	public function page( $slug, Request $request )
+	{
+		$data = [];
+		$view = 'public.' . $slug;
+
+		if ( view()->exists( $view ) ) {
+
+			if ( $request->isMethod( 'POST' ) ) {
+				$data = $this->handlePageRequest( $request );
+			}
+
+			return view( $view, $data );
+		}
+
+		return response()->view( 'public.not_found', [ 'status' => 404 ] );
+	}
+
+	private function handlePageRequest( Request $request )
+	{
+		if ( $request->has( 'pg_action' ) ) {
+			switch ( $request->input( 'pg_action' ) ) {
+				case 'contribute':
+
+					break;
+			}
+		}
+		return [];
+	}
 }

@@ -8008,3 +8008,12 @@ body.mailbox-trash ul.nav a[href='#mailbox-trash'] {
 #reg-panel {
   width: 500px;
   max-width: 90%; }
+
+.topnavbar .navbar-header {
+  text-align: right; }
+
+.full-width .wrapper {
+  padding-bottom: 60px; }
+
+.full-width footer {
+  margin-right: 0; }

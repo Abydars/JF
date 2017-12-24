@@ -28,10 +28,17 @@ $user = Front::user();
     </style>
     @yield('style')
 </head>
-<body class="">
+<body class="full-width">
 <div class="wrapper">
     @include ('layouts.single_nav')
+
     @yield('content')
+
+    <footer class="bg-white">
+        <div class="container">
+            <span>&copy; {{ date('Y') }} - {{ config('app.name') }}</span>
+        </div>
+    </footer>
 </div>
 
 <!-- =============== SCRIPTS ===============-->

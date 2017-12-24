@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\SystemSetting;
 use Illuminate\Http\Request;
 
-class SettingsController extends PanelController
+class SettingsController extends Controller
 {
 	public function __construct()
 	{

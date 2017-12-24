@@ -16,12 +16,13 @@
         @if(!$is_user_logged_in)
             <div class="col-lg-4 col-md-4 col-xs-12 mt-xl mb-xl">
                 <!-- START panel-->
-                <div class="panel panel-dark panel-flat">
+                <div class="panel panel-dark panel-flat mb-lg">
                     <div class="panel-body">
                         @include('layouts.login')
                     </div>
                 </div>
                 <!-- END panel-->
+                @include('layouts.subscribe')
             </div>
         @endif
     </div>

@@ -10,13 +10,13 @@
  */
 
 
-(function(window, document, $, undefined) {
+(function (window, document, $, undefined) {
 
     if (typeof $ === 'undefined') {
         throw new Error('This application\'s JavaScript requires jQuery');
     }
 
-    $(function() {
+    $(function () {
 
         // Restore body classes
         // -----------------------------------
@@ -35,8 +35,29 @@
         $('.offsidebar.hide').removeClass('hide');
 
         // Disable warning "Synchronous XMLHttpRequest on the main thread is deprecated.."
-        $.ajaxPrefilter(function(options, originalOptions, jqXHR) {
+        $.ajaxPrefilter(function (options, originalOptions, jqXHR) {
             options.async = true;
+        });
+
+        $('.datetimepicker').each(function () {
+            var format = $(this).data('format');
+
+            if (format == undefined)
+                format = "YYYY-MM-DD";
+
+            $(this).datetimepicker({
+                icons: {
+                    time: 'fa fa-clock-o',
+                    date: 'fa fa-calendar',
+                    up: 'fa fa-chevron-up',
+                    down: 'fa fa-chevron-down',
+                    previous: 'fa fa-chevron-left',
+                    next: 'fa fa-chevron-right',
+                    today: 'fa fa-crosshairs',
+                    clear: 'fa fa-trash'
+                },
+                format: format
+            });
         });
 
     }); // doc ready

@@ -24,18 +24,22 @@
                     ])
                 }}
 
-                <ul class="nav navbar-nav navbar-right mv-sm mt-lg">
+                <ul class="nav navbar-nav navbar-right">
                     @if($user)
                         <li>
-                            <a href="{{ url('/dashboard') }}" class="btn btn-info pv-sm">Go to Dashboard</a>
+                            <a href="{{ url('/dashboard') }}" class="">Go to Dashboard</a>
                         </li>
                         <li class="ml-sm">
                             <a href="{{ url('/logout') }}"
                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-                               title="Log out" class="btn btn-danger pv-sm">Logout</a>
+                               title="Log out" class="">Logout</a>
                             <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
                                 {{ csrf_field() }}
                             </form>
+                        </li>
+                    @else
+                        <li>
+                            <a href="{{ url('/login') }}" class="">Login/Register</a>
                         </li>
                     @endif
                 </ul>

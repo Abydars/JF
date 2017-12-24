@@ -10,10 +10,7 @@
 
 @section('content')
     <div class="container">
-        <div class="col-lg-8">
-
-        </div>
-        <div class="col-lg-4 col-md-4 col-xs-12 mt-xl mb-xl">
+        <div class="block-center wd-xxl mt-xl">
             <!-- START panel-->
             <div class="panel panel-dark panel-flat">
                 <div class="panel-body">

@@ -11,6 +11,8 @@ return [
 				'item_type' => 'item'
 			],
 			[ 'label' => 'Users', 'action' => 'admin/user', 'icon' => 'icon-user', 'item_type' => 'item' ],
+			[ 'label' => 'Subscribers', 'action' => 'admin/subscriber', 'icon' => 'icon-share', 'item_type' => 'item' ],
+			[ 'label' => 'Settings', 'action' => 'admin/settings', 'icon' => 'icon-settings', 'item_type' => 'item' ],
 		],
 		'subscriber'    => [
 			[ 'label' => 'Main', 'item_type' => 'heading' ],
@@ -18,10 +20,10 @@ return [
 		]
 	],
 	'public_navigation' => [
-		[ 'label' => '', 'action' => 'home', 'icon' => 'icon-home', 'item_type' => 'item' ],
-		[ 'label' => 'About Us', 'action' => 'about', 'item_type' => 'item' ],
-		[ 'label' => 'Contact Us', 'action' => 'about', 'item_type' => 'item' ],
-		[ 'label' => 'Discussions', 'action' => 'blog', 'item_type' => 'item' ],
+		[ 'label' => '', 'action' => '/', 'icon' => 'icon-home', 'item_type' => 'item' ],
+		[ 'label' => 'About Us', 'action' => 'page/about', 'item_type' => 'item' ],
+		[ 'label' => 'Contact Us', 'action' => 'page/contact', 'item_type' => 'item' ],
+		[ 'label' => 'Contribute/Donate', 'action' => 'page/contribute', 'item_type' => 'item' ],
 	],
 	'countries'         => [
 		"AF" => "Afghanistan",
