@@ -21,9 +21,9 @@ class RedirectIfDeactivated
 
 		switch ( $user->status ) {
 			case 'inactive':
-				return redirect( 'activate' );
+				return response()->redirectToRoute('activate.index');
 			case 'suspended':
-				return redirect( 'activate' );
+				return response()->redirectToRoute('activate.index');
 		}
 
 		return $next( $request );
