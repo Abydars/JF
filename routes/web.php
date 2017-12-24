@@ -30,7 +30,7 @@ Route::post( 'page/{page}', 'PublicController@page' )->name( 'public.page' );
  * Routes for:
  * Is Authenticated
  */
-Route::group( [ 'prefix' => 'user', 'middleware' => [ 'auth' ] ], function () {
+Route::group( [ 'prefix' => 'auth', 'middleware' => [ 'auth' ] ], function () {
 	//Deactivated Controllers
 	Route::get( 'activate', 'ActivateController@index' )->name( 'activate.index' );
 	Route::get( 'activate/send', 'ActivateController@send' )->name( 'activate.send' );

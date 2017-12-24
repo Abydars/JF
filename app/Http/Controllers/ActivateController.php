@@ -13,7 +13,6 @@ class ActivateController extends Controller
 
 	public function __construct( ActivationService $activationService )
 	{
-		$this->middleware( 'auth' );
 		$this->activationService = $activationService;
 	}
 
