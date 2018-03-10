@@ -46,7 +46,14 @@ $active_navigation = Dashboard::active_navigation();
     </section>
     <!-- Page footer-->
     <footer>
-        <span>&copy; {{ date('Y') }} - {{ config('app.name') }}</span>
+        <div class="row">
+            <div class="col-md-6">
+                <span>&copy; {{ date('Y') }} - {{ config('app.name') }}</span>
+            </div>
+            <div class="col-md-6 text-right">
+                <a class="text-dark" href="{{ route('public.page', ['contribute']) }}">Donate/Contribute</a>
+            </div>
+        </div>
     </footer>
 </div>
 @yield('modals')

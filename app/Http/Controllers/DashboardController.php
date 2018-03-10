@@ -19,7 +19,7 @@ class DashboardController extends Controller
 	 */
 	public function index()
 	{
-		//Dashboard::setTitle( 'Dashboard' );
+		Dashboard::setTitle( 'Dashboard' );
 
 		return view( 'dashboard.dashboard' );
 	}

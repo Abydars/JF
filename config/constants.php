@@ -16,7 +16,17 @@ return [
 		],
 		'subscriber'    => [
 			[ 'label' => 'Main', 'item_type' => 'heading' ],
-			[ 'label' => 'Dashboard', 'action' => 'dashboard', 'icon' => 'icon-speedometer', 'item_type' => 'item' ]
+			[ 'label' => 'Dashboard', 'action' => 'dashboard', 'icon' => 'icon-speedometer', 'item_type' => 'item' ],
+			[
+				'label'     => 'Quiz',
+				'action'    => 'quiz',
+				'icon'      => 'icon-question',
+				'item_type' => 'group',
+				'children'  => [
+					[ 'label' => 'Play Quiz', 'action' => 'quiz/play', 'item_type' => 'item' ],
+					[ 'label' => 'Books & References', 'action' => 'quiz/references', 'item_type' => 'item' ],
+				]
+			],
 		]
 	],
 	'public_navigation' => [

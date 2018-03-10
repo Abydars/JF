@@ -80,6 +80,16 @@ Route::group( [ 'prefix' => 'admin', 'middleware' => [ 'auth', 'administrator' ]
 /*
  * Routes for:
  * Is Authenticated
+ * Is Subscriber
+ * Is Activated
+ */
+Route::group( [ 'prefix' => 'quiz', 'middleware' => [ 'auth', 'activated', 'subscriber' ] ], function () {
+	Route::get( 'references', 'QuizController@references' )->name( 'quiz.references' );
+} );
+
+/*
+ * Routes for:
+ * Is Authenticated
  * Is Contributor
  */
 Route::group( [ 'prefix' => 'user', 'middleware' => [ 'auth', 'contributor' ] ], function () {
